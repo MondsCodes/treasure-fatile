@@ -1,7 +1,7 @@
 // NOTE FOR TREASURE: dimensions below are placeholders matching the visual aspect
 // of each piece. Replace `dimensions` strings with the real measurements (inches),
 // and edit `title` / `medium` as needed. The format follows the convention:
-//   "Acrylic on Two Canvases, 150 x 98", 2024"
+//   "Acrylic on Two Canvases, 150 × 98", 2024."
 // which is rendered by the work detail page as: medium, dimensions, year.
 
 export type Category = "traditional" | "digital";
@@ -11,7 +11,7 @@ export type Work = {
   title: string;
   year: number;
   medium: string;
-  /** Inches, formatted exactly as it should appear, e.g. `60 x 48"`. Optional. */
+  /** Inches, formatted exactly as it should appear, e.g. `60 × 48"`. Optional. */
   dimensions?: string;
   category: Category;
   series?: string;
@@ -28,8 +28,8 @@ export const works: Work[] = [
     slug: "three",
     title: "Three",
     year: 2026,
-    medium: "Mixed media on textile",
-    dimensions: '72 x 39"',
+    medium: "Mixed Media on Textile",
+    dimensions: '72 × 39"',
     category: "traditional",
     image: "/works/three-2026.jpg",
     width: 2862,
@@ -40,8 +40,8 @@ export const works: Work[] = [
     slug: "interior",
     title: "Interior",
     year: 2025,
-    medium: "Oil on raw canvas",
-    dimensions: '48 x 40"',
+    medium: "Oil on Raw Canvas",
+    dimensions: '48 × 40"',
     category: "traditional",
     image: "/works/interior-2025.jpg",
     width: 2029,
@@ -52,8 +52,8 @@ export const works: Work[] = [
     slug: "crowd",
     title: "Crowd",
     year: 2025,
-    medium: "Oil on canvas",
-    dimensions: '36 x 24"',
+    medium: "Oil on Canvas",
+    dimensions: '36 × 24"',
     category: "traditional",
     image: "/works/crowd-2025.jpg",
     width: 526,
@@ -64,8 +64,8 @@ export const works: Work[] = [
     slug: "halo",
     title: "Halo",
     year: 2024,
-    medium: "Acrylic on canvas",
-    dimensions: '40 x 30"',
+    medium: "Acrylic on Canvas",
+    dimensions: '40 × 30"',
     category: "traditional",
     image: "/works/halo-2024.jpg",
     width: 360,
@@ -76,8 +76,8 @@ export const works: Work[] = [
     slug: "gathering",
     title: "The Gathering",
     year: 2024,
-    medium: "Acrylic on canvas",
-    dimensions: '36 x 27"',
+    medium: "Acrylic on Canvas",
+    dimensions: '36 × 27"',
     category: "traditional",
     image: "/works/gathering-2024.jpg",
     width: 488,
@@ -88,7 +88,7 @@ export const works: Work[] = [
     title: "Twins",
     year: 2024,
     medium: "Oil on Two Canvases",
-    dimensions: '24 x 16"',
+    dimensions: '24 × 16"',
     category: "traditional",
     image: "/works/twins-2024.jpg",
     width: 558,
@@ -99,8 +99,8 @@ export const works: Work[] = [
     slug: "reclining",
     title: "Reclining",
     year: 2024,
-    medium: "Oil on linen",
-    dimensions: '40 x 26"',
+    medium: "Oil on Linen",
+    dimensions: '40 × 26"',
     category: "traditional",
     image: "/works/reclining-2024.jpg",
     width: 576,
@@ -110,8 +110,8 @@ export const works: Work[] = [
     slug: "two-figures",
     title: "Two Figures",
     year: 2024,
-    medium: "Oil on canvas",
-    dimensions: '24 x 18"',
+    medium: "Oil on Canvas",
+    dimensions: '24 × 18"',
     category: "traditional",
     image: "/works/two-figures-2024.jpg",
     width: 360,
@@ -121,8 +121,8 @@ export const works: Work[] = [
     slug: "study-yellow",
     title: "Study (Yellow)",
     year: 2024,
-    medium: "Acrylic on paper",
-    dimensions: '12 x 9"',
+    medium: "Acrylic on Paper",
+    dimensions: '12 × 9"',
     category: "traditional",
     image: "/works/study-yellow-2024.jpg",
     width: 360,
@@ -132,8 +132,8 @@ export const works: Work[] = [
     slug: "red-chair",
     title: "Red Chair",
     year: 2023,
-    medium: "Oil on canvas",
-    dimensions: '30 x 24"',
+    medium: "Oil on Canvas",
+    dimensions: '30 × 24"',
     category: "traditional",
     image: "/works/red-chair-2023.jpg",
     width: 1121,
@@ -144,8 +144,8 @@ export const works: Work[] = [
     slug: "iya",
     title: "Ìyá",
     year: 2023,
-    medium: "Oil on canvas",
-    dimensions: '20 x 16"',
+    medium: "Oil on Canvas",
+    dimensions: '20 × 16"',
     category: "traditional",
     image: "/works/iya-2023.jpg",
     width: 1624,
@@ -156,7 +156,7 @@ export const works: Work[] = [
     title: "Whisper",
     year: 2023,
     medium: "Acrylic on Two Canvases",
-    dimensions: '16 x 11"',
+    dimensions: '16 × 11"',
     category: "traditional",
     image: "/works/whisper-diptych-2023.jpg",
     width: 256,

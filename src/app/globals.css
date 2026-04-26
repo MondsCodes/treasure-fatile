@@ -2,9 +2,9 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #111111;
-  --muted: #8a8a8a;
-  --rule: #e6e6e6;
+  --foreground: #1a1a1a;
+  --muted: #9a9a9a;
+  --rule: #ececec;
 }
 
 @theme inline {
@@ -13,8 +13,6 @@
   --color-muted: var(--muted);
   --color-rule: var(--rule);
   --font-sans: var(--font-inter);
-  --font-display: var(--font-cormorant);
-  --font-mono: var(--font-mono);
 }
 
 html,
@@ -38,19 +36,27 @@ a {
   text-underline-offset: 4px;
 }
 
-/* James Jean–style caption: tiny, neutral, single line where space allows */
-.caption {
-  font-size: 11.5px;
-  letter-spacing: 0.04em;
-  line-height: 1.5;
+.tracked {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.tracked-tight {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.caption-title {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--foreground);
+  font-weight: 400;
 }
 
-.caption .work-title {
-  font-style: italic;
-}
-
-.caption .sep {
+.caption-meta {
+  font-size: 12px;
+  letter-spacing: 0.02em;
   color: var(--muted);
-  margin: 0 0.4em;
+  font-weight: 300;
 }

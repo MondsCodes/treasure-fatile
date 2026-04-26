@@ -6,23 +6,18 @@ type Props = {
 };
 
 /**
- * Caption rendered below an artwork in the James Jean style:
- *   *Title*, Medium, Dimensions, Year
+ * Two-line caption in the JJ style:
+ *   PEACOCK II
+ *   Acrylic on Canvas, 80 × 60", 2025.
  */
 export function WorkCaption({ work, className }: Props) {
   return (
-    <p className={`caption ${className ?? ""}`}>
-      <span className="work-title">{work.title}</span>
-      <span className="sep">,</span>
-      {work.medium}
-      {work.dimensions && (
-        <>
-          <span className="sep">,</span>
-          {work.dimensions}
-        </>
-      )}
-      <span className="sep">,</span>
-      {work.year}
-    </p>
+    <div className={`space-y-1.5 ${className ?? ""}`}>
+      <p className="caption-title">{work.title}</p>
+      <p className="caption-meta">
+        {work.medium}
+        {work.dimensions && `, ${work.dimensions}`}, {work.year}.
+      </p>
+    </div>
   );
 }

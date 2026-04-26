@@ -13,15 +13,15 @@ const nav = [
 export function SiteHeader() {
   const pathname = usePathname();
   return (
-    <header className="sticky top-0 z-40 bg-background/90 backdrop-blur-md border-b border-rule">
-      <div className="mx-auto max-w-[1800px] px-5 sm:px-8 h-14 flex items-center justify-between gap-6">
+    <header className="bg-background">
+      <div className="mx-auto max-w-[1800px] px-8 sm:px-14 pt-10 pb-12 flex items-start justify-between gap-6">
         <Link
           href="/"
-          className="text-[13px] tracking-[0.04em] font-medium leading-none whitespace-nowrap"
+          className="tracked text-[14px] sm:text-[15px] leading-none whitespace-nowrap"
         >
           Treasure Fatile
         </Link>
-        <nav className="flex items-center gap-5 sm:gap-7 text-[12px] tracking-[0.04em]">
+        <nav className="flex items-center gap-7 sm:gap-10 tracked text-[11px]">
           {nav.map((item) => {
             const active =
               item.href === "/work"

@@ -20,7 +20,7 @@ export async function generateMetadata({
   if (!work) return { title: "Not found" };
   return {
     title: work.title,
-    description: `${work.medium}${work.dimensions ? `, ${work.dimensions}` : ""}, ${work.year}`,
+    description: `${work.medium}${work.dimensions ? `, ${work.dimensions}` : ""}, ${work.year}.`,
   };
 }
 
@@ -36,8 +36,8 @@ export default async function WorkDetail({
   const { prev, next } = adjacentWorks(slug);
 
   return (
-    <article className="mx-auto max-w-[1400px] px-5 sm:px-8 pt-6 pb-24">
-      <div className="flex items-baseline justify-between mb-6 text-[12px] tracking-[0.04em]">
+    <article className="mx-auto max-w-[1400px] px-8 sm:px-14 pb-24">
+      <div className="flex items-baseline justify-between mb-8 tracked text-[11px]">
         <Link href="/work" className="text-muted hover:text-foreground">
           ← Work
         </Link>
@@ -46,7 +46,7 @@ export default async function WorkDetail({
 
       <figure>
         <div
-          className="relative w-full overflow-hidden bg-rule/40"
+          className="relative w-full bg-[#f4f4f0]"
           style={{ aspectRatio: `${work.width} / ${work.height}` }}
         >
           <Image
@@ -59,18 +59,12 @@ export default async function WorkDetail({
           />
         </div>
 
-        <figcaption className="mt-5 text-[13px] leading-relaxed">
-          <span className="italic">{work.title}</span>
-          <span className="text-muted">, </span>
-          {work.medium}
-          {work.dimensions && (
-            <>
-              <span className="text-muted">, </span>
-              {work.dimensions}
-            </>
-          )}
-          <span className="text-muted">, </span>
-          {work.year}
+        <figcaption className="mt-8 max-w-2xl space-y-2">
+          <p className="caption-title text-[14px]">{work.title}</p>
+          <p className="caption-meta text-[14px]">
+            {work.medium}
+            {work.dimensions && `, ${work.dimensions}`}, {work.year}.
+          </p>
         </figcaption>
 
         {work.description && (
@@ -80,17 +74,15 @@ export default async function WorkDetail({
         )}
       </figure>
 
-      <nav className="mt-20 grid grid-cols-2 gap-8 border-t border-rule pt-6 text-[12px] tracking-[0.04em]">
+      <nav className="mt-24 grid grid-cols-2 gap-8 border-t border-rule pt-8 tracked text-[11px]">
         <div>
           {prev && (
             <Link
               href={`/work/${prev.slug}`}
-              className="group inline-flex flex-col gap-1"
+              className="group inline-flex flex-col gap-1.5"
             >
               <span className="text-muted">← Previous</span>
-              <span className="italic group-hover:text-foreground">
-                {prev.title}
-              </span>
+              <span className="group-hover:text-foreground">{prev.title}</span>
             </Link>
           )}
         </div>
@@ -98,12 +90,10 @@ export default async function WorkDetail({
           {next && (
             <Link
               href={`/work/${next.slug}`}
-              className="group inline-flex flex-col gap-1 items-end"
+              className="group inline-flex flex-col gap-1.5 items-end"
             >
               <span className="text-muted">Next →</span>
-              <span className="italic group-hover:text-foreground">
-                {next.title}
-              </span>
+              <span className="group-hover:text-foreground">{next.title}</span>
             </Link>
           )}
         </div>

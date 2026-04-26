@@ -3,10 +3,10 @@ import Link from "next/link";
 export function SiteFooter() {
   const year = new Date().getFullYear();
   return (
-    <footer className="mt-32 border-t border-rule">
-      <div className="mx-auto max-w-[1800px] px-5 sm:px-8 py-10 grid gap-8 sm:grid-cols-3 text-[12px] tracking-[0.04em]">
+    <footer className="mt-32">
+      <div className="mx-auto max-w-[1800px] px-8 sm:px-14 py-12 flex flex-wrap gap-6 items-center justify-between tracked text-[10px]">
         <p className="text-muted">© {year} Treasure Fatile</p>
-        <ul className="flex gap-5 sm:justify-center text-muted">
+        <ul className="flex gap-7 text-muted">
           <li>
             <Link href="/work" className="hover:text-foreground">
               Work
@@ -22,8 +22,6 @@ export function SiteFooter() {
               Contact
             </Link>
           </li>
-        </ul>
-        <ul className="flex gap-5 sm:justify-end text-muted">
           <li>
             <a href="https://instagram.com" className="hover:text-foreground">
               Instagram

@@ -13,14 +13,12 @@ const exhibitions = [
 
 export default function About() {
   return (
-    <div className="mx-auto max-w-[1400px] px-5 sm:px-8 pt-10 pb-24">
-      <header className="mb-12">
-        <h1 className="text-[13px] tracking-[0.04em]">About</h1>
-      </header>
+    <div className="mx-auto max-w-[1400px] px-8 sm:px-14 pb-24">
+      <h2 className="tracked text-[12px] text-muted mb-10">About</h2>
 
       <section className="grid gap-10 lg:grid-cols-12 mb-20">
         <div className="lg:col-span-2">
-          <p className="text-[12px] tracking-[0.04em] text-muted">Bio</p>
+          <p className="tracked text-[11px] text-muted">Bio</p>
         </div>
         <div className="lg:col-span-7 space-y-5 text-[15px] leading-[1.7]">
           <p>
@@ -31,7 +29,7 @@ export default function About() {
           </p>
           <p>
             Recent paintings consider inheritance and the weight of the body,
-            often through close cropped portraits in saturated reds, oranges,
+            often through close-cropped portraits in saturated reds, oranges,
             and ultramarines. She studied painting in Lagos and continues to
             work from a small studio there.
           </p>
@@ -40,9 +38,7 @@ export default function About() {
 
       <section className="grid gap-10 lg:grid-cols-12 border-t border-rule pt-10">
         <div className="lg:col-span-2">
-          <p className="text-[12px] tracking-[0.04em] text-muted">
-            Selected exhibitions
-          </p>
+          <p className="tracked text-[11px] text-muted">Selected Exhibitions</p>
         </div>
         <ul className="lg:col-span-10 divide-y divide-rule text-[14px]">
           {exhibitions.map((e) => (
@@ -51,7 +47,7 @@ export default function About() {
               className="grid grid-cols-[60px_1fr_auto] gap-6 py-3"
             >
               <span className="text-muted tabular-nums">{e.year}</span>
-              <span className="italic">{e.title}</span>
+              <span className="caption-title">{e.title}</span>
               <span className="text-muted text-right">{e.venue}</span>
             </li>
           ))}
