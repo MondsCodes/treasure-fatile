@@ -1,31 +1,46 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const nav = [
   { label: "Work", href: "/work" },
+  { label: "Digital", href: "/work/category/digital" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
 export function SiteHeader() {
+  const pathname = usePathname();
   return (
-    <header className="sticky top-0 z-40 backdrop-blur-md bg-background/75 border-b border-rule/60">
-      <div className="mx-auto max-w-[1600px] px-6 sm:px-10 h-16 flex items-center justify-between">
+    <header className="sticky top-0 z-40 bg-background/90 backdrop-blur-md border-b border-rule">
+      <div className="mx-auto max-w-[1800px] px-5 sm:px-8 h-14 flex items-center justify-between gap-6">
         <Link
           href="/"
-          className="font-display text-xl sm:text-2xl tracking-tight leading-none"
+          className="text-[13px] tracking-[0.04em] font-medium leading-none whitespace-nowrap"
         >
-          Treasure <span className="italic">Fatile</span>
+          Treasure Fatile
         </Link>
-        <nav className="flex items-center gap-6 sm:gap-9 text-[13px] uppercase tracking-[0.2em]">
-          {nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-muted hover:text-foreground transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
+        <nav className="flex items-center gap-5 sm:gap-7 text-[12px] tracking-[0.04em]">
+          {nav.map((item) => {
+            const active =
+              item.href === "/work"
+                ? pathname === "/work" || pathname.startsWith("/work/")
+                : pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={
+                  active
+                    ? "text-foreground"
+                    : "text-muted hover:text-foreground transition-colors"
+                }
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
       </div>
     </header>

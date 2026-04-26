@@ -1,22 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f5f3ee;
-  --foreground: #1a1a1a;
-  --muted: #6b6b6b;
-  --accent: #8a4a2b;
-  --rule: #d9d4c7;
+  --background: #ffffff;
+  --foreground: #111111;
+  --muted: #8a8a8a;
+  --rule: #e6e6e6;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
-  --color-accent: var(--accent);
   --color-rule: var(--rule);
   --font-sans: var(--font-inter);
   --font-display: var(--font-cormorant);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-mono);
 }
 
 html,
@@ -27,8 +25,8 @@ body {
 
 body {
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
@@ -38,4 +36,21 @@ body {
 
 a {
   text-underline-offset: 4px;
+}
+
+/* James Jean–style caption: tiny, neutral, single line where space allows */
+.caption {
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  color: var(--foreground);
+}
+
+.caption .work-title {
+  font-style: italic;
+}
+
+.caption .sep {
+  color: var(--muted);
+  margin: 0 0.4em;
 }

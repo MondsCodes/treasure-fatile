@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getWork, works } from "@/lib/works";
+import { adjacentWorks, getWork, works } from "@/lib/works";
 
 type Params = { slug: string };
 
@@ -18,7 +18,10 @@ export async function generateMetadata({
   const { slug } = await params;
   const work = getWork(slug);
   if (!work) return { title: "Not found" };
-  return { title: work.title, description: work.description };
+  return {
+    title: work.title,
+    description: `${work.medium}${work.dimensions ? `, ${work.dimensions}` : ""}, ${work.year}`,
+  };
 }
 
 export default async function WorkDetail({
@@ -30,108 +33,62 @@ export default async function WorkDetail({
   const work = getWork(slug);
   if (!work) notFound();
 
-  const idx = works.findIndex((w) => w.slug === work.slug);
-  const prev = works[idx - 1];
-  const next = works[idx + 1];
+  const { prev, next } = adjacentWorks(slug);
 
   return (
-    <article className="mx-auto max-w-[1600px] px-6 sm:px-10 py-12 sm:py-16">
-      <Link
-        href="/work"
-        className="text-xs uppercase tracking-[0.22em] text-muted hover:text-foreground transition-colors"
-      >
-        ← Archive
-      </Link>
-
-      <div className="mt-10 grid gap-12 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-8">
-          <div
-            className="relative w-full overflow-hidden bg-rule/30"
-            style={{ aspectRatio: work.ratio }}
-          >
-            {work.image ? (
-              <Image
-                src={work.image}
-                alt={work.title}
-                fill
-                priority
-                sizes="(min-width:1024px) 66vw, 100vw"
-                className="object-cover"
-              />
-            ) : (
-              <div
-                aria-hidden
-                className="absolute inset-0"
-                style={{ background: work.tint }}
-              />
-            )}
-          </div>
-        </div>
-
-        <aside className="lg:col-span-4 lg:sticky lg:top-24 self-start space-y-8">
-          <div>
-            <p className="font-mono text-xs uppercase tracking-[0.22em] text-muted">
-              {work.year}
-              {work.series ? ` · ${work.series}` : ""}
-            </p>
-            <h1 className="mt-3 font-display text-4xl sm:text-5xl leading-tight">
-              <span className="italic">{work.title}</span>
-            </h1>
-          </div>
-
-          <dl className="grid grid-cols-[auto_1fr] gap-x-8 gap-y-3 text-sm border-t border-rule/60 pt-6">
-            <dt className="uppercase tracking-[0.22em] text-xs text-muted">
-              Medium
-            </dt>
-            <dd>{work.medium}</dd>
-            {work.dimensions && (
-              <>
-                <dt className="uppercase tracking-[0.22em] text-xs text-muted">
-                  Size
-                </dt>
-                <dd>{work.dimensions}</dd>
-              </>
-            )}
-            {work.series && (
-              <>
-                <dt className="uppercase tracking-[0.22em] text-xs text-muted">
-                  Series
-                </dt>
-                <dd>{work.series}</dd>
-              </>
-            )}
-            <dt className="uppercase tracking-[0.22em] text-xs text-muted">
-              Year
-            </dt>
-            <dd>{work.year}</dd>
-          </dl>
-
-          {work.description && (
-            <p className="text-base leading-relaxed text-foreground/80">
-              {work.description}
-            </p>
-          )}
-
-          <Link
-            href="/contact"
-            className="inline-block text-sm underline decoration-rule hover:decoration-foreground transition-colors"
-          >
-            Inquire about this work
-          </Link>
-        </aside>
+    <article className="mx-auto max-w-[1400px] px-5 sm:px-8 pt-6 pb-24">
+      <div className="flex items-baseline justify-between mb-6 text-[12px] tracking-[0.04em]">
+        <Link href="/work" className="text-muted hover:text-foreground">
+          ← Work
+        </Link>
+        <span className="text-muted">{work.year}</span>
       </div>
 
-      <nav className="mt-24 grid grid-cols-2 gap-8 border-t border-rule/60 pt-8 text-sm">
+      <figure>
+        <div
+          className="relative w-full overflow-hidden bg-rule/40"
+          style={{ aspectRatio: `${work.width} / ${work.height}` }}
+        >
+          <Image
+            src={work.image}
+            alt={work.title}
+            fill
+            priority
+            sizes="(min-width:1400px) 1400px, 100vw"
+            className="object-contain"
+          />
+        </div>
+
+        <figcaption className="mt-5 text-[13px] leading-relaxed">
+          <span className="italic">{work.title}</span>
+          <span className="text-muted">, </span>
+          {work.medium}
+          {work.dimensions && (
+            <>
+              <span className="text-muted">, </span>
+              {work.dimensions}
+            </>
+          )}
+          <span className="text-muted">, </span>
+          {work.year}
+        </figcaption>
+
+        {work.description && (
+          <p className="mt-6 max-w-2xl text-[14px] leading-relaxed text-foreground/80">
+            {work.description}
+          </p>
+        )}
+      </figure>
+
+      <nav className="mt-20 grid grid-cols-2 gap-8 border-t border-rule pt-6 text-[12px] tracking-[0.04em]">
         <div>
           {prev && (
             <Link
               href={`/work/${prev.slug}`}
               className="group inline-flex flex-col gap-1"
             >
-              <span className="text-xs uppercase tracking-[0.22em] text-muted">
-                ← Previous
-              </span>
-              <span className="font-display text-xl italic group-hover:text-accent transition-colors">
+              <span className="text-muted">← Previous</span>
+              <span className="italic group-hover:text-foreground">
                 {prev.title}
               </span>
             </Link>
@@ -143,10 +100,8 @@ export default async function WorkDetail({
               href={`/work/${next.slug}`}
               className="group inline-flex flex-col gap-1 items-end"
             >
-              <span className="text-xs uppercase tracking-[0.22em] text-muted">
-                Next →
-              </span>
-              <span className="font-display text-xl italic group-hover:text-accent transition-colors">
+              <span className="text-muted">Next →</span>
+              <span className="italic group-hover:text-foreground">
                 {next.title}
               </span>
             </Link>

@@ -1,40 +1,22 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { WorkCard } from "@/components/work-card";
 import { worksByYear } from "@/lib/works";
 
 export const metadata: Metadata = {
-  title: "Work",
+  title: "Digital",
 };
 
-export default function WorkIndex() {
-  const grouped = worksByYear();
+export default function DigitalIndex() {
+  const grouped = worksByYear("digital");
   return (
     <div className="mx-auto max-w-[1800px] px-5 sm:px-8 pt-10 pb-24">
       <header className="flex items-baseline justify-between mb-10">
-        <h1 className="text-[13px] tracking-[0.04em]">Work</h1>
-        <nav className="flex gap-5 text-[12px] tracking-[0.04em] text-muted">
-          {grouped.map(([year]) => (
-            <a key={year} href={`#${year}`} className="hover:text-foreground">
-              {year}
-            </a>
-          ))}
-          <Link
-            href="/work/category/digital"
-            className="hover:text-foreground"
-          >
-            Digital
-          </Link>
-        </nav>
+        <h1 className="text-[13px] tracking-[0.04em]">Digital</h1>
       </header>
 
       <div className="space-y-20">
         {grouped.map(([year, items]) => (
-          <section
-            key={year}
-            id={String(year)}
-            className="scroll-mt-20 grid gap-6 sm:gap-8 lg:grid-cols-12"
-          >
+          <section key={year} className="grid gap-6 sm:gap-8 lg:grid-cols-12">
             <div className="lg:col-span-2">
               <p className="text-[13px] tracking-[0.04em] sticky top-20">
                 {year}
